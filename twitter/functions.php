@@ -32,8 +32,15 @@ function RT($api) {
 				$str = substr((string) $tweet->text, 0, 2);
 				
 				if($str != "RT" and $tweet->to_user_id == "") {
-					print_r(date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
-					$twitter->retweet($tweet->id_str);
+					$retweeted = $twitter->showRetweet($tweet->id_str);
+					
+					if(isset($retweeted->retweeted) and $retweeted->retweeted == FALSE) {
+						print_r(date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+						$twitter->retweet($tweet->id_str);
+					} elseif(!isset($retweeted->retweeted)) {
+						print_r(date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+						$twitter->retweet($tweet->id_str);
+					}
 				}
 				
 				if($key == 0) {

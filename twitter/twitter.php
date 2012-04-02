@@ -101,6 +101,10 @@ class Twitter extends API_Twitter {
 		}
 	}
 	
+	public function showRetweet($id = FALSE) {
+		return $this->get("statuses/retweets/" . $id);
+	}
+	
 	public function tweets($params = array("count" => 2)) {
 		return $this->get("statuses/user_timeline", $params);
 	}
