@@ -48,6 +48,8 @@ function RT($api) {
 					fwrite($data, '{"id" : "' . $tweet->id_str . '"}');
 					fclose($data);
 				}
+				
+				sleep(90);
 			}
 		}
 	}

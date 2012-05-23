@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 require_once("twitter/functions.php");
 require_once("twitter/twitter.php");
