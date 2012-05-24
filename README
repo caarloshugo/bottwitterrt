@@ -1,0 +1,7 @@
+Agregar una tarea para ejecutar el bot:
+
+crontab -e
+
+# m h  dom mon dow   command
+*/66 * * * * php /var/www/bots/codejobs.php >> /var/www/bots/logs/codejobs.log
+

@@ -1,5 +1,5 @@
 .DS_Store
 *.swp
 *~
-config/*
+config/*.php
 logs/*

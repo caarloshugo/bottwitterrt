@@ -1,0 +1,10 @@
+<?php
+/*Array of keys*/
+$keys[] = array(
+	"username"           => "caarloshugo",
+	"userRT"             => "codejobs",
+	"consumer_key"       => "ConsumerKey",
+	"consumer_secret"    => "ConsumerSecret",
+	"oauth_token"        => "Token",
+	"oauth_token_secret" => "TokenSecret"
+);
