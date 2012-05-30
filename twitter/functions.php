@@ -49,7 +49,7 @@ function RT($api) {
 					fclose($data);
 				}
 				
-				sleep(90);
+				sleep(40);
 			}
 		}
 	}
