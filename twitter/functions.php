@@ -55,8 +55,6 @@ function RT($api) {
 	}
 }
 
-
-
 function RT_E($api) {	
 	/*Read file json ID tweet*/
 	$filename = "/opt/lampp/htdocs/bots/json/E_" . $api["username"] . "_" . $api["userRT"] . "_id.json";
@@ -69,7 +67,7 @@ function RT_E($api) {
 	fclose($data);
 
 	$twitter = new Twitter($api);
-	$tweets  = $twitter->search($api["userRT"], "210062581161926657");
+	$tweets  = $twitter->search($api["userRT"], $contents->id);
 	
 	if($tweets and !empty($tweets) and isset($tweets->results)) {
 		if(is_array($tweets->results) and count($tweets->results) > 0) {
@@ -84,13 +82,19 @@ function RT_E($api) {
 					}
 				}
 				
-				if($key == 1) {
+				if($key == 0) {
 					$data = fopen($filename, "w");
 					fwrite($data, '{"id" : "' . $tweet->id_str . '"}');
 					fclose($data);
 				}
 				
+				
+				sleep(30);
 			}
+		} else {
+			print_r("No data \n");
 		}
+	} else {
+		print_r("No data \n");
 	}
 }
