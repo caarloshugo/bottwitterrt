@@ -14,7 +14,7 @@ function json_request($url) {
 
 function RT($api) {	
 	/*Read file json ID tweet*/
-	$filename = "/opt/lampp/htdocs/bots/json/" . $api["username"] . "_" . $api["userRT"] . "_id.json";
+	$filename = dirname(__FILE__) . "/../json/" . $api["username"] . "_" . $api["userRT"] . "_id.json";
 	
 	print_r("Filaname: " . $filename . "\n");
 	
@@ -57,7 +57,7 @@ function RT($api) {
 
 function RT_E($api) {	
 	/*Read file json ID tweet*/
-	$filename = "/opt/lampp/htdocs/bots/json/E_" . $api["username"] . "_" . $api["userRT"] . "_id.json";
+	$filename = dirname(__FILE__) . "/../json/E_" . $api["username"] . "_" . $api["userRT"] . "_id.json";
 	
 	print_r("Filaname: " . $filename . "\n");
 	
