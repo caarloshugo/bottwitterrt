@@ -7,5 +7,5 @@ require_once("config/codejobs.php");
 foreach($keys as $key) {
 	print_r("\n\nUser: " . $key["username"]  . "-" . $key["userRT"] . "\n");
 	RT($key);
-	sleep(480);
+	sleep(300);
 }

@@ -6,5 +6,5 @@ require_once("config/caarloshugo.php");
 
 foreach($keys as $key) {
 	print_r("\n\nUser: " . $key["username"]  . "-" . $key["userRT"] . "\n");
-	tweet_RT($key);
+	RT_E($key);
 }

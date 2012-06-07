@@ -49,8 +49,52 @@ function RT($api) {
 					fclose($data);
 				}
 				
-				sleep(90);
+				sleep(2);
 			}
 		}
+	}
+}
+
+function RT_E($api) {	
+	/*Read file json ID tweet*/
+	$filename = "/opt/lampp/htdocs/bots/json/E_" . $api["username"] . "_" . $api["userRT"] . "_id.json";
+	
+	print_r("Filaname: " . $filename . "\n");
+	
+	$data 	  = fopen($filename, "r");
+	$contents = json_decode(fread($data, filesize($filename)));
+
+	fclose($data);
+
+	$twitter = new Twitter($api);
+	$tweets  = $twitter->search($api["userRT"], $contents->id);
+	
+	if($tweets and !empty($tweets) and isset($tweets->results)) {
+		if(is_array($tweets->results) and count($tweets->results) > 0) {
+			foreach($tweets->results as $key => $tweet) {
+				$str = substr((string) $tweet->text, 0, 2);
+				
+				if($str != "RT" and $tweet->to_user_id == "") {
+					
+					if(strlen($tweet->text) <= 127) {
+						print_r(date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+						$twitter->tweet('RT @codejobs ' . $tweet->text);
+					}
+				}
+				
+				if($key == 0) {
+					$data = fopen($filename, "w");
+					fwrite($data, '{"id" : "' . $tweet->id_str . '"}');
+					fclose($data);
+				}
+				
+				
+				sleep(30);
+			}
+		} else {
+			print_r("No data \n");
+		}
+	} else {
+		print_r("No data \n");
 	}
 }
