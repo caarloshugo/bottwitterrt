@@ -49,7 +49,7 @@ function RT($api) {
 					fclose($data);
 				}
 				
-				sleep(2);
+				sleep(40);
 			}
 		}
 	}
@@ -75,7 +75,6 @@ function RT_E($api) {
 				$str = substr((string) $tweet->text, 0, 2);
 				
 				if($str != "RT" and $tweet->to_user_id == "") {
-					
 					if(strlen($tweet->text) <= 127) {
 						print_r(date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
 						$twitter->tweet('RT @codejobs ' . $tweet->text);
@@ -87,7 +86,6 @@ function RT_E($api) {
 					fwrite($data, '{"id" : "' . $tweet->id_str . '"}');
 					fclose($data);
 				}
-				
 				
 				sleep(30);
 			}
