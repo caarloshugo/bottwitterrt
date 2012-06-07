@@ -3,7 +3,7 @@ Agregar una tarea para ejecutar el bot:
 crontab -e
 
 # m h  dom mon dow   command
-*/66 * * * * php /var/www/bots/codejobs.php >> /var/www/bots/logs/codejobs.log
+*/30 * * * * php /var/www/bots/codejobs.php >> /var/www/bots/logs/codejobs.log
 
 Renombrar el archivo de la carpeta config y editar los api Key ej: config.php_example > codejobs.php
 
