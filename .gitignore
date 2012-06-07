@@ -3,4 +3,4 @@
 *~
 config/*.php
 logs/*
-json/*
+json/*.json
