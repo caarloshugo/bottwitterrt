@@ -96,3 +96,48 @@ function RT_E($api) {
 		print_r("No data \n");
 	}
 }
+
+function searchRT($api) {
+	/*Read file json ID tweet*/
+	//$filename = dirname(__FILE__) . "/../json/E_" . $api["username"] . "_" . $api["text"] . "_id.json";
+	//print_r("Filaname: " . $filename . "\n");
+	//$data 	  = fopen($filename, "r");
+	//$contents = json_decode(fread($data, filesize($filename)));
+	//fclose($data);
+
+	$twitter = new Twitter($api);
+	$tweets  = $twitter->serachText($api["text"]);
+	
+	if($tweets and !empty($tweets) and isset($tweets->results)) {
+		if(is_array($tweets->results) and count($tweets->results) > 0) {
+			foreach($tweets->results as $key => $tweet) {
+				$str = substr((string) $tweet->text, 0, 2);
+				
+				if($tweet->to_user_id == "" and $tweet->from_user != "yosoy8bits") {
+					$count = 140 - (strlen($tweet->from_user) + 5);
+				
+					if(strlen($tweet->text) <= $count) {
+						print_r("tweet => " . date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+						$twitter->tweet('RT @' . $tweet->from_user . ' ' . $tweet->text);
+					} else {
+						$retweeted = $twitter->showRetweet($tweet->id_str);
+					
+						if(isset($retweeted->retweeted) and $retweeted->retweeted == FALSE) {
+							print_r("retweet => " . date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+							$twitter->retweet($tweet->id_str);
+						} elseif(!isset($retweeted->retweeted)) {
+							print_r("retweet => " . date('l jS \of F Y h:i:s A') . " id: " . $tweet->id_str . " - " . $tweet->text . " \n");
+							$twitter->retweet($tweet->id_str);
+						}
+					}
+				}
+				
+				sleep(30);
+			}
+		} else {
+			print_r("No data \n");
+		}
+	} else {
+		print_r("No data \n");
+	}
+}

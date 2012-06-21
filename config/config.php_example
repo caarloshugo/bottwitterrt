@@ -1,8 +1,8 @@
 <?php
 /*Array of keys*/
 $keys[] = array(
-	"username"           => "caarloshugo",
-	"userRT"             => "codejobs",
+	"username"           => "username",
+	"userRT"             => "userRT",
 	"consumer_key"       => "ConsumerKey",
 	"consumer_secret"    => "ConsumerSecret",
 	"oauth_token"        => "Token",

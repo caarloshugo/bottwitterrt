@@ -153,6 +153,10 @@ class Twitter extends API_Twitter {
 		return $this->json_request("http://search.twitter.com/search.json?callback=?&since_id=" . $id . "&q=from:" . $username);
 	}
 	
+	public function serachText($text = NULL, $limit = 3) {
+		return $this->json_request("http://search.twitter.com/search.json?q=" . $text . "&rpp=" . $limit);
+	}
+	
 	public function json_request($url) {
 		$ch = curl_init(); 
 		
