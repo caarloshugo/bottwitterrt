@@ -98,13 +98,6 @@ function RT_E($api) {
 }
 
 function searchRT($api) {
-	/*Read file json ID tweet*/
-	//$filename = dirname(__FILE__) . "/../json/E_" . $api["username"] . "_" . $api["text"] . "_id.json";
-	//print_r("Filaname: " . $filename . "\n");
-	//$data 	  = fopen($filename, "r");
-	//$contents = json_decode(fread($data, filesize($filename)));
-	//fclose($data);
-
 	$twitter = new Twitter($api);
 	$tweets  = $twitter->serachText($api["text"]);
 	
